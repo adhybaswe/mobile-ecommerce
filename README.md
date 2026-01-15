@@ -4,24 +4,38 @@ A modern, production-ready e-commerce mobile application built with **React Nati
 
 ## 📸 Screenshots
 
-<!-- Add your screenshots here -->
-### Home Screen
-![Home Screen](./screenshots/homepage.png)
-
-### Product Detail
-![Product Detail](./screenshots/detail.png)
-
-### Shopping Cart
-![Shopping Cart](./screenshots/cart.png)
-
-### Login Screen
-![Login Screen](./screenshots/login.png)
-
-### Profile Screen
-![Login Screen](./screenshots/profile.png)
-
-### Checkout Success
-![Checkout Success](./screenshots/success.png)
+<table>
+  <tr>
+    <td width="50%">
+      <h3 align="center">Home Screen</h3>
+      <img src="./screenshots/homepage.png" alt="Home Screen" width="100%">
+    </td>
+    <td width="50%">
+      <h3 align="center">Product Detail</h3>
+      <img src="./screenshots/detail.png" alt="Product Detail" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3 align="center">Shopping Cart</h3>
+      <img src="./screenshots/cart.png" alt="Shopping Cart" width="100%">
+    </td>
+    <td width="50%">
+      <h3 align="center">Login Screen</h3>
+      <img src="./screenshots/login.png" alt="Login Screen" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3 align="center">Profile Screen</h3>
+      <img src="./screenshots/profile.png" alt="Profile Screen" width="100%">
+    </td>
+    <td width="50%">
+      <h3 align="center">Checkout Success</h3>
+      <img src="./screenshots/success.png" alt="Checkout Success" width="100%">
+    </td>
+  </tr>
+</table>
 
 ---
 

@@ -25,7 +25,7 @@ export default function LoginScreen() {
         try {
             const response = await loginMutation.mutateAsync({ username, password });
             await login(response.token);
-            router.back();
+            router.replace('/(tabs)');
         } catch (error) {
             Alert.alert('Login Failed', 'Invalid credentials. Try: mor_2314 / 83r5^_');
         }
@@ -49,6 +49,9 @@ export default function LoginScreen() {
                     <View style={styles.content}>
                         {/* Header */}
                         <View style={styles.header}>
+                            <TouchableOpacity onPress={() => router.replace('/(tabs)')} style={styles.backButton}>
+                                <Ionicons name="arrow-back" size={24} color={Colors.textPrimary} />
+                            </TouchableOpacity>
                             <Text style={styles.title}>Sign In</Text>
                             <Text style={styles.subtitle}>Hi! Welcome back, you've been missed</Text>
                         </View>
@@ -172,9 +175,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     header: {
-        marginBottom: Spacing.xxxl,
+        marginBottom: Spacing.xxl,
         alignItems: 'center',
+        position: 'relative',
     },
+    backButton: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        zIndex: 1,
+    },
+
     title: {
         fontSize: FontSizes.huge,
         fontWeight: '700',

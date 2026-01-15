@@ -8,7 +8,7 @@ import { CartItemCard } from '../../components/cart/CartItemCard';
 import { Button } from '../../components/common/Button';
 import { formatCurrency } from '../../utils/format';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
-import { Colors } from '../../constants/colors';
+import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../../constants/colors';
 
 export default function CartScreen() {
     const router = useRouter();
@@ -80,23 +80,23 @@ export default function CartScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 18,
-        paddingTop: 16,
-        paddingBottom: 12,
-        backgroundColor: '#fff',
+        paddingHorizontal: Spacing.xl - 6,
+        paddingTop: Spacing.lg,
+        paddingBottom: Spacing.md,
+        backgroundColor: Colors.background,
     },
     backButton: {
         padding: 8,
         marginLeft: -8,
     },
     headerTitle: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
         color: Colors.textPrimary,
     },
@@ -110,52 +110,48 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 24,
+        paddingHorizontal: Spacing.xl,
     },
     emptyEmoji: {
         fontSize: 60,
-        marginBottom: 16,
+        marginBottom: Spacing.lg,
     },
     emptyTitle: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
-        color: '#1f2937',
-        marginBottom: 8,
+        color: Colors.textPrimary,
+        marginBottom: Spacing.sm,
     },
     emptySubtitle: {
-        fontSize: 16,
-        color: '#6b7280',
-        marginBottom: 24,
+        fontSize: FontSizes.lg,
+        color: Colors.textSecondary,
+        marginBottom: Spacing.xl,
         textAlign: 'center',
     },
     listContent: {
-        padding: 16,
+        padding: Spacing.lg,
         paddingBottom: 120,
     },
     footer: {
-        backgroundColor: '#ffffff',
+        backgroundColor: Colors.background,
         borderTopWidth: 1,
-        borderTopColor: '#e5e7eb',
-        padding: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: -2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        elevation: 8,
+        borderTopColor: Colors.border,
+        padding: Spacing.lg,
+        ...Shadows.medium,
     },
     totalRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 16,
+        marginBottom: Spacing.lg,
     },
     totalLabel: {
-        fontSize: 18,
+        fontSize: FontSizes.xl,
         fontWeight: '600',
-        color: '#1f2937',
+        color: Colors.textPrimary,
     },
     totalAmount: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
         color: Colors.price,
     },

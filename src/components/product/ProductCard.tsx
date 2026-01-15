@@ -5,7 +5,7 @@ import { Product } from '../../types';
 import { formatCurrency } from '../../utils/format';
 import { useRouter } from 'expo-router';
 import { useWishlistStore } from '../../features/wishlist/wishlistStore';
-import { Colors } from '../../constants/colors';
+import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../../constants/colors';
 
 interface ProductCardProps {
     product: Product;
@@ -49,7 +49,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     <Ionicons
                         name={inWishlist ? "heart" : "heart-outline"}
                         size={20}
-                        color={inWishlist ? "#ef4444" : "#6b7280"}
+                        color={inWishlist ? Colors.wishlist : Colors.textSecondary}
                     />
                 </TouchableOpacity>
             </View>
@@ -80,27 +80,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
-        elevation: 2,
+        backgroundColor: Colors.cardBackground,
+        borderRadius: BorderRadius.md,
+        padding: Spacing.lg,
+        marginBottom: Spacing.lg,
+        ...Shadows.small,
         borderWidth: 1,
-        borderColor: '#f3f4f6',
+        borderColor: Colors.cardBorder,
     },
     imageContainer: {
         alignItems: 'center',
-        marginBottom: 12,
+        marginBottom: Spacing.md,
         position: 'relative',
     },
     image: {
         width: '100%',
         height: 192,
-        borderRadius: 8,
+        borderRadius: BorderRadius.sm,
     },
     wishlistButton: {
         position: 'absolute',
@@ -109,25 +105,21 @@ const styles = StyleSheet.create({
         width: 36,
         height: 36,
         borderRadius: 18,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        ...Shadows.medium,
     },
     content: {
-        gap: 8,
+        gap: Spacing.sm,
     },
     category: {
-        fontSize: 12,
-        color: '#6b7280',
+        fontSize: FontSizes.xs,
+        color: Colors.textSecondary,
         letterSpacing: 0.5,
     },
     title: {
-        fontSize: 16,
+        fontSize: FontSizes.lg,
         fontWeight: '600',
         color: Colors.textPrimary,
     },
@@ -135,10 +127,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: 8,
+        marginTop: Spacing.sm,
     },
     price: {
-        fontSize: 20,
+        fontSize: FontSizes.xxl,
         fontWeight: 'bold',
         color: Colors.price,
     },
@@ -151,7 +143,7 @@ const styles = StyleSheet.create({
         marginRight: 4,
     },
     ratingText: {
-        fontSize: 14,
+        fontSize: FontSizes.md,
         color: Colors.textSecondary,
     },
 });

@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
 import { useWishlistStore } from '../../features/wishlist/wishlistStore';
 import { ProductCard } from '../../components/product/ProductCard';
+import { Colors, FontSizes, Spacing } from '../../constants/colors';
 
 export default function FavoritesScreen() {
     const { items } = useWishlistStore();
@@ -44,42 +45,42 @@ export default function FavoritesScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
     },
     header: {
-        paddingHorizontal: 18,
-        paddingTop: 16,
-        paddingBottom: 12,
-        backgroundColor: '#fff',
+        paddingHorizontal: Spacing.xl - 6,
+        paddingTop: Spacing.lg,
+        paddingBottom: Spacing.md,
+        backgroundColor: Colors.background,
     },
     headerTitle: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
-        color: '#1f2937',
+        color: Colors.textPrimary,
     },
     emptyContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 16,
+        padding: Spacing.lg,
     },
     emptyEmoji: {
         fontSize: 60,
-        marginBottom: 16,
+        marginBottom: Spacing.lg,
     },
     title: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
-        color: '#1f2937',
-        marginBottom: 8,
+        color: Colors.textPrimary,
+        marginBottom: Spacing.sm,
     },
     subtitle: {
-        fontSize: 16,
-        color: '#6b7280',
+        fontSize: FontSizes.lg,
+        color: Colors.textSecondary,
     },
     listContent: {
-        paddingHorizontal: 16,
-        paddingTop: 16,
+        paddingHorizontal: Spacing.lg,
+        paddingTop: Spacing.lg,
         paddingBottom: 100,
     },
     columnWrapper: {

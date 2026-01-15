@@ -4,7 +4,7 @@
 **React Native E-Commerce Mobile App (Portfolio Project)**
 
 ## Purpose
-The purpose of this project is to build a **production-ready e-commerce mobile application** using **React Native and Expo** as a **professional portfolio project** for freelance platforms such as Fiverr.
+The purpose of this project is to build a **production-ready e-commerce mobile application** using **React Native and Expo** as a **professional portfolio project**.
 
 This project is designed to demonstrate:
 - Clean and scalable mobile app architecture
@@ -18,9 +18,10 @@ The project focuses on **frontend excellence**, not backend implementation.
 ---
 
 ## Target Audience
-- Fiverr clients (technical and non-technical)
-- Startups or small businesses looking for mobile apps
+- Potential clients and employers
+- Startups or small businesses looking for mobile app developers
 - Product owners who need prototypes or MVPs
+- Technical recruiters and hiring managers
 
 ---
 
@@ -40,9 +41,10 @@ The project focuses on **frontend excellence**, not backend implementation.
 - **Fake Store API** (`https://fakestoreapi.com`)
 
 ### UI & Utilities
-- NativeWind (Tailwind CSS for React Native)
+- Custom Theme System (Colors, Spacing, FontSizes, Shadows)
+- Standard React Native StyleSheet API
 - Expo SecureStore
-- React Navigation / Expo Router
+- Expo Router
 
 ---
 
@@ -134,6 +136,23 @@ https://fakestoreapi.com
 **Acceptance Criteria:**
 - No real payment processing
 - Cart is cleared after successful checkout
+
+---
+
+### 6. Wishlist / Favorites
+**Features:**
+- Add/remove products from favorites
+- Favorites are persisted locally
+- Dedicated Favorites screen accessible via bottom nav
+
+---
+
+### 7. Theme System
+**Features:**
+- Centralized color management (Colors.ts)
+- Standardized spacing and typography tokens
+- Reusable shadow presets
+- Design can be updated globally from a single file
 
 ---
 
@@ -237,7 +256,7 @@ src/
 - Codebase is easy to read and understand
 - Scalable and maintainable architecture
 - UI looks like a real production app
-- Easy to explain to potential Fiverr clients
+- Professional presentation for potential clients and employers
 
 ---
 
@@ -253,7 +272,7 @@ src/
 ## Future Enhancements (Optional)
 
 - Pagination or infinite scroll
-- Wishlist feature
+- Real payment gateway integration
 - Dark mode support
 - Unit and integration testing
 
@@ -261,4 +280,4 @@ src/
 
 ## Summary
 
-This project is designed as a **high-quality React Native portfolio application** that mirrors real-world e-commerce workflows, emphasizes **frontend best practices**, and is ready to be showcased to freelance clients.
+This project is designed as a **high-quality React Native portfolio application** that mirrors real-world e-commerce workflows, emphasizes **frontend best practices**, and is ready to be showcased to potential clients and employers.

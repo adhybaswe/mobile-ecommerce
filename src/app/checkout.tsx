@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCartStore } from '../features/cart/cartStore';
 import { Button } from '../components/common/Button';
 import { formatCurrency } from '../utils/format';
-import { Colors } from '../constants/colors';
+import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../constants/colors';
 
 export default function CheckoutScreen() {
     const router = useRouter();
@@ -88,23 +88,23 @@ export default function CheckoutScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
     },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 18,
-        paddingTop: 16,
-        paddingBottom: 12,
-        backgroundColor: '#fff',
+        paddingHorizontal: Spacing.xl - 6,
+        paddingTop: Spacing.lg,
+        paddingBottom: Spacing.md,
+        backgroundColor: Colors.background,
     },
     backButton: {
         padding: 8,
         marginLeft: -8,
     },
     headerTitle: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
         color: Colors.textPrimary,
     },
@@ -113,54 +113,50 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         flex: 1,
-        paddingHorizontal: 16,
-        paddingTop: 16,
+        paddingHorizontal: Spacing.lg,
+        paddingTop: Spacing.lg,
     },
     summaryCard: {
-        backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
-        elevation: 2,
+        backgroundColor: Colors.cardBackground,
+        borderRadius: BorderRadius.md,
+        padding: Spacing.lg,
+        marginBottom: Spacing.lg,
+        ...Shadows.small,
         borderWidth: 1,
-        borderColor: '#f3f4f6',
+        borderColor: Colors.cardBorder,
     },
     sectionTitle: {
-        fontSize: 18,
+        fontSize: FontSizes.xl,
         fontWeight: '600',
         color: Colors.textPrimary,
-        marginBottom: 16,
+        marginBottom: Spacing.lg,
     },
     itemRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: 8,
+        paddingVertical: Spacing.sm,
     },
     itemDetails: {
         flex: 1,
     },
     itemTitle: {
-        fontSize: 16,
+        fontSize: FontSizes.lg,
         color: Colors.textPrimary,
     },
     itemQuantity: {
-        fontSize: 14,
+        fontSize: FontSizes.md,
         color: Colors.textSecondary,
     },
     itemPrice: {
-        fontSize: 16,
+        fontSize: FontSizes.lg,
         fontWeight: '600',
         color: Colors.textPrimary,
-        marginLeft: 8,
+        marginLeft: Spacing.sm,
     },
     separator: {
         height: 1,
         backgroundColor: Colors.border,
-        marginVertical: 16,
+        marginVertical: Spacing.lg,
     },
     totalRow: {
         flexDirection: 'row',
@@ -168,12 +164,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     totalLabel: {
-        fontSize: 18,
+        fontSize: FontSizes.xl,
         fontWeight: 'bold',
         color: Colors.textPrimary,
     },
     totalAmount: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
         color: Colors.price,
     },
@@ -181,24 +177,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#eff6ff',
         borderWidth: 1,
         borderColor: '#bfdbfe',
-        borderRadius: 8,
-        padding: 16,
-        marginBottom: 24,
+        borderRadius: BorderRadius.sm,
+        padding: Spacing.lg,
+        marginBottom: Spacing.xxl,
     },
     demoTitle: {
-        fontSize: 14,
+        fontSize: FontSizes.md,
         color: '#1e40af',
         fontWeight: '500',
         marginBottom: 4,
     },
     demoText: {
-        fontSize: 14,
+        fontSize: FontSizes.md,
         color: '#1d4ed8',
     },
     footer: {
         borderTopWidth: 1,
         borderTopColor: Colors.border,
-        padding: 16,
-        backgroundColor: '#ffffff',
+        padding: Spacing.lg,
+        backgroundColor: Colors.background,
     },
 });

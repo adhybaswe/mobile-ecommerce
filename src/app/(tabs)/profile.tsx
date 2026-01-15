@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { Button } from '../../components/common/Button';
 import { useAuthStore } from '../../features/auth/authStore';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
-import { Colors } from '../../constants/colors';
+import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../../constants/colors';
 
 export default function ProfileScreen() {
     const router = useRouter();
@@ -72,17 +72,17 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
     },
     content: {
         flex: 1,
-        paddingHorizontal: 24,
-        paddingTop: 32,
+        paddingHorizontal: Spacing.xl,
+        paddingTop: Spacing.xxl,
         paddingBottom: 100,
     },
     header: {
         alignItems: 'center',
-        marginBottom: 32,
+        marginBottom: Spacing.xxl,
     },
     avatar: {
         width: 96,
@@ -91,61 +91,57 @@ const styles = StyleSheet.create({
         borderRadius: 48,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 16,
+        marginBottom: Spacing.lg,
     },
     avatarText: {
         fontSize: 36,
-        color: '#ffffff',
+        color: Colors.textWhite,
         fontWeight: 'bold',
     },
     name: {
-        fontSize: 24,
+        fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
-        color: '#111827',
-        marginBottom: 4,
+        color: Colors.textPrimary,
+        marginBottom: Spacing.xs,
     },
     email: {
-        fontSize: 16,
-        color: '#6b7280',
+        fontSize: FontSizes.lg,
+        color: Colors.textSecondary,
     },
     section: {
-        backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
-        elevation: 2,
+        backgroundColor: Colors.background,
+        borderRadius: BorderRadius.md,
+        padding: Spacing.lg,
+        marginBottom: Spacing.lg,
+        ...Shadows.small,
     },
     sectionTitle: {
-        fontSize: 18,
+        fontSize: FontSizes.xl,
         fontWeight: '600',
-        color: '#111827',
-        marginBottom: 12,
+        color: Colors.textPrimary,
+        marginBottom: Spacing.md,
     },
     infoRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: 8,
+        paddingVertical: Spacing.sm,
     },
     label: {
-        fontSize: 16,
-        color: '#6b7280',
+        fontSize: FontSizes.lg,
+        color: Colors.textSecondary,
     },
     value: {
-        fontSize: 16,
+        fontSize: FontSizes.lg,
         fontWeight: '500',
-        color: '#111827',
+        color: Colors.textPrimary,
     },
     separator: {
         height: 1,
-        backgroundColor: '#e5e7eb',
-        marginVertical: 4,
+        backgroundColor: Colors.divider,
+        marginVertical: Spacing.xs,
     },
     footer: {
         marginTop: 'auto',
-        marginBottom: 32,
+        marginBottom: Spacing.xxl,
     },
 });

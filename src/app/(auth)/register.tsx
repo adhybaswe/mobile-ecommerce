@@ -4,35 +4,27 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from '../../components/common/Button';
-import { useLogin } from '../../hooks/useApi';
-import { useAuthStore } from '../../features/auth/authStore';
 import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../../constants/colors';
 
-export default function LoginScreen() {
-    const [username, setUsername] = useState('mor_2314');
-    const [password, setPassword] = useState('83r5^_');
+export default function RegisterScreen() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
-    const loginMutation = useLogin();
-    const { login } = useAuthStore();
 
-    const handleLogin = async () => {
-        if (!username || !password) {
-            Alert.alert('Error', 'Please enter email and password');
+    const handleRegister = () => {
+        if (!name || !email || !password) {
+            Alert.alert('Error', 'Please fill in all fields');
             return;
         }
 
-        try {
-            const response = await loginMutation.mutateAsync({ username, password });
-            await login(response.token);
-            router.back();
-        } catch (error) {
-            Alert.alert('Login Failed', 'Invalid credentials. Try: mor_2314 / 83r5^_');
-        }
-    };
-
-    const handleSocialLogin = (provider: string) => {
-        Alert.alert('Coming Soon', `${provider} login will be available soon!`);
+        // Simulating registration
+        Alert.alert(
+            'Success',
+            'Account created successfully! Please sign in.',
+            [{ text: 'OK', onPress: () => router.push('/(auth)/login') }]
+        );
     };
 
     return (
@@ -41,109 +33,89 @@ export default function LoginScreen() {
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                 style={styles.keyboardView}
             >
-                <ScrollView
-                    contentContainerStyle={styles.scrollContent}
-                    showsVerticalScrollIndicator={false}
-                    keyboardShouldPersistTaps="handled"
-                >
+                <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                     <View style={styles.content}>
-                        {/* Header */}
                         <View style={styles.header}>
-                            <Text style={styles.title}>Sign In</Text>
-                            <Text style={styles.subtitle}>Hi! Welcome back, you've been missed</Text>
+                            <Text style={styles.title}>Create Account</Text>
+                            <Text style={styles.subtitle}>Fill in your details to start shopping</Text>
                         </View>
 
-                        {/* Email Input */}
                         <View style={styles.inputGroup}>
-                            <Text style={styles.label}>Email</Text>
+                            <Text style={styles.label}>Full Name</Text>
                             <TextInput
                                 style={styles.input}
-                                placeholder="example@gmail.com"
-                                placeholderTextColor="#9ca3af"
-                                value={username}
-                                onChangeText={setUsername}
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                keyboardType="email-address"
+                                placeholder="Enter your full name"
+                                placeholderTextColor={Colors.textTertiary}
+                                value={name}
+                                onChangeText={setName}
                             />
                         </View>
 
-                        {/* Password Input */}
+                        <View style={styles.inputGroup}>
+                            <Text style={styles.label}>Email Address</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="Enter your email"
+                                placeholderTextColor={Colors.textTertiary}
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                            />
+                        </View>
+
                         <View style={styles.inputGroup}>
                             <Text style={styles.label}>Password</Text>
                             <View style={styles.passwordContainer}>
                                 <TextInput
                                     style={styles.passwordInput}
-                                    placeholder="••••••••••••••••"
-                                    placeholderTextColor="#9ca3af"
+                                    placeholder="Create a password"
+                                    placeholderTextColor={Colors.textTertiary}
                                     value={password}
                                     onChangeText={setPassword}
                                     secureTextEntry={!showPassword}
-                                    autoCapitalize="none"
                                 />
                                 <TouchableOpacity
                                     onPress={() => setShowPassword(!showPassword)}
                                     style={styles.eyeIcon}
                                 >
                                     <Ionicons
-                                        name={showPassword ? "eye-outline" : "eye-off-outline"}
-                                        size={22}
-                                        color="#6b7280"
+                                        name={showPassword ? "eye-off-outline" : "eye-outline"}
+                                        size={20}
+                                        color={Colors.textTertiary}
                                     />
                                 </TouchableOpacity>
                             </View>
                         </View>
 
-                        {/* Forgot Password */}
-                        <TouchableOpacity
-                            style={styles.forgotPassword}
-                            onPress={() => Alert.alert('Forgot Password', 'Password reset feature coming soon!')}
-                        >
-                            <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-                        </TouchableOpacity>
-
-                        {/* Sign In Button */}
                         <Button
-                            title="Sign In"
-                            onPress={handleLogin}
-                            loading={loginMutation.isPending}
-                            style={styles.signInButton}
+                            title="Sign Up"
+                            onPress={handleRegister}
+                            style={styles.signUpButton}
                         />
 
-                        {/* Divider */}
                         <View style={styles.dividerContainer}>
                             <View style={styles.divider} />
-                            <Text style={styles.dividerText}>Or sign in with</Text>
+                            <Text style={styles.dividerText}>Or sign up with</Text>
                             <View style={styles.divider} />
                         </View>
 
-                        {/* Social Login Buttons */}
                         <View style={styles.socialContainer}>
-                            <TouchableOpacity
-                                style={styles.socialButton}
-                                onPress={() => handleSocialLogin('Apple')}
-                            >
-                                <Ionicons name="logo-apple" size={24} color="#000000" />
+                            <TouchableOpacity style={styles.socialButton}>
+                                <Ionicons name="logo-apple" size={24} color="#000" />
                             </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.socialButton}
-                                onPress={() => handleSocialLogin('Google')}
-                            >
-                                <Ionicons name="logo-google" size={24} color="#000000" />
+                            <TouchableOpacity style={styles.socialButton}>
+                                <Ionicons name="logo-google" size={24} color="#000" />
                             </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.socialButton}
-                                onPress={() => handleSocialLogin('Facebook')}
-                            >
-                                <Ionicons name="logo-facebook" size={24} color="#000000" />
+                            <TouchableOpacity style={styles.socialButton}>
+                                <Ionicons name="logo-facebook" size={24} color="#000" />
                             </TouchableOpacity>
                         </View>
 
-                        {/* Sign Up Link */}
-                        <View style={styles.signUpContainer}>
-                            <Text style={styles.signUpText}>Don't have an account? </Text>
-                            <TouchableOpacity onPress={() => router.push('/(auth)/register')}>
-                                <Text style={styles.signUpLink}>Sign Up</Text>
+                        <View style={styles.signInContainer}>
+                            <Text style={styles.signInText}>Already have an account? </Text>
+                            <TouchableOpacity onPress={() => router.push('/(auth)/login')}>
+                                <Text style={styles.signInLink}>Sign In</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -167,12 +139,12 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         paddingHorizontal: Spacing.xl,
-        paddingTop: Spacing.xxxl,
+        paddingTop: Spacing.xxl,
         paddingBottom: Spacing.xl,
         justifyContent: 'center',
     },
     header: {
-        marginBottom: Spacing.xxxl,
+        marginBottom: Spacing.xxl,
         alignItems: 'center',
     },
     title: {
@@ -187,7 +159,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     inputGroup: {
-        marginBottom: Spacing.xl - 4,
+        marginBottom: Spacing.lg,
     },
     label: {
         fontSize: FontSizes.base,
@@ -221,16 +193,8 @@ const styles = StyleSheet.create({
     eyeIcon: {
         padding: 4,
     },
-    forgotPassword: {
-        alignSelf: 'flex-end',
-        marginBottom: Spacing.xl,
-    },
-    forgotPasswordText: {
-        fontSize: FontSizes.md,
-        color: Colors.textSecondary,
-        textDecorationLine: 'underline',
-    },
-    signInButton: {
+    signUpButton: {
+        marginTop: Spacing.lg,
         marginBottom: Spacing.xl,
         borderRadius: BorderRadius.full,
         paddingVertical: Spacing.lg,
@@ -267,38 +231,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         ...Shadows.small,
     },
-    signUpContainer: {
+    signInContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: Spacing.xl,
     },
-    signUpText: {
+    signInText: {
         fontSize: FontSizes.md,
         color: Colors.textSecondary,
     },
-    signUpLink: {
+    signInLink: {
         fontSize: FontSizes.md,
         color: Colors.textPrimary,
         fontWeight: '600',
         textDecorationLine: 'underline',
-    },
-    demoBox: {
-        backgroundColor: '#eff6ff',
-        borderWidth: 1,
-        borderColor: '#bfdbfe',
-        borderRadius: BorderRadius.md,
-        padding: Spacing.lg,
-        marginTop: Spacing.sm,
-    },
-    demoTitle: {
-        fontSize: FontSizes.sm,
-        color: '#1e40af',
-        fontWeight: '600',
-        marginBottom: 4,
-    },
-    demoText: {
-        fontSize: FontSizes.sm,
-        color: '#1d4ed8',
-        lineHeight: 20,
     },
 });

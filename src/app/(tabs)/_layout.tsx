@@ -3,6 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCartStore } from '../../features/cart/cartStore';
 import { useAuthStore } from '../../features/auth/authStore';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Colors } from '../../constants/colors';
 
 export default function TabsLayout() {
     const itemCount = useCartStore((state) => state.getItemCount());
@@ -24,7 +25,7 @@ export default function TabsLayout() {
         >
             {isAuthenticated ? (
                 <View>
-                    <Ionicons name="cart" size={24} color="#fff" />
+                    <Ionicons name="cart" size={24} color={Colors.textWhite} />
                     {itemCount > 0 && (
                         <View style={styles.badge}>
                             <Text style={styles.badgeText}>
@@ -34,7 +35,7 @@ export default function TabsLayout() {
                     )}
                 </View>
             ) : (
-                <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}>
+                <Text style={{ color: Colors.textWhite, fontWeight: 'bold', fontSize: 16 }}>
                     Login
                 </Text>
             )}
@@ -44,16 +45,16 @@ export default function TabsLayout() {
     return (
         <Tabs
             screenOptions={{
-                tabBarActiveTintColor: '#6366f1',
-                tabBarInactiveTintColor: '#9ca3af',
+                tabBarActiveTintColor: Colors.primary,
+                tabBarInactiveTintColor: Colors.textTertiary,
                 tabBarStyle: {
                     display: 'none', // Hide default tab bar
                 },
                 headerShown: true,
                 headerStyle: {
-                    backgroundColor: '#6366f1',
+                    backgroundColor: Colors.primary,
                 },
-                headerTintColor: '#fff',
+                headerTintColor: Colors.textWhite,
                 headerTitleStyle: {
                     fontWeight: 'bold',
                 },
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -4,
         right: -4,
-        backgroundColor: '#ec4899',
+        backgroundColor: Colors.badge,
         borderRadius: 10,
         width: 20,
         height: 20,
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     badgeText: {
-        color: '#ffffff',
+        color: Colors.textWhite,
         fontSize: 12,
         fontWeight: 'bold',
     },

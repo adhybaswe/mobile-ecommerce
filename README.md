@@ -6,10 +6,10 @@ A modern, production-ready e-commerce mobile application built with **React Nati
 
 <!-- Add your screenshots here -->
 ### Home Screen
-![Home Screen](./screenshots/home.png)
+![Home Screen](./screenshots/homepage.png)
 
 ### Product Detail
-![Product Detail](./screenshots/product-detail.png)
+![Product Detail](./screenshots/detail.png)
 
 ### Shopping Cart
 ![Shopping Cart](./screenshots/cart.png)
@@ -17,8 +17,11 @@ A modern, production-ready e-commerce mobile application built with **React Nati
 ### Login Screen
 ![Login Screen](./screenshots/login.png)
 
+### Profile Screen
+![Login Screen](./screenshots/profile.png)
+
 ### Checkout Success
-![Checkout Success](./screenshots/checkout-success.png)
+![Checkout Success](./screenshots/success.png)
 
 ---
 

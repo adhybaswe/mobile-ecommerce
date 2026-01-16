@@ -9,10 +9,11 @@ interface Category {
 }
 
 const DUMMY_CATEGORIES: Category[] = [
-    { id: '1', name: 'Sofa', icon: 'bed-outline' },
-    { id: '2', name: 'Chair', icon: 'grid-outline' },
-    { id: '3', name: 'Lamp', icon: 'bulb-outline' },
-    { id: '4', name: 'Cupboard', icon: 'apps-outline' },
+    { id: '1', name: 'Women', icon: 'woman-outline' },
+    { id: '2', name: 'Men', icon: 'man-outline' },
+    { id: '3', name: 'Kids', icon: 'happy-outline' },
+    { id: '4', name: 'Accessories', icon: 'watch-outline' },
+    { id: '5', name: 'Shoes', icon: 'footsteps-outline' },
 ];
 
 interface CategorySectionProps {

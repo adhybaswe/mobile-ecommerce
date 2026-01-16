@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { PageHeader } from '../../components/common/PageHeader';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
 import { useWishlistStore } from '../../features/wishlist/wishlistStore';
 import { ProductCard } from '../../components/product/ProductCard';
@@ -13,9 +14,7 @@ export default function FavoritesScreen() {
 
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>Wishlist</Text>
-            </View>
+            <PageHeader title="Wishlist" />
             {items.length === 0 ? (
                 <View style={styles.emptyContainer}>
                     <Text style={styles.emptyEmoji}>💝</Text>
@@ -46,17 +45,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background,
-    },
-    header: {
-        paddingHorizontal: Spacing.xl - 6,
-        paddingTop: Spacing.lg,
-        paddingBottom: Spacing.md,
-        backgroundColor: Colors.background,
-    },
-    headerTitle: {
-        fontSize: FontSizes.xxxl,
-        fontWeight: 'bold',
-        color: Colors.textPrimary,
     },
     emptyContainer: {
         flex: 1,

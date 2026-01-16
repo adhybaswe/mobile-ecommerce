@@ -3,6 +3,7 @@ import { View, Text, Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Button } from '../../components/common/Button';
+import { PageHeader } from '../../components/common/PageHeader';
 import { useAuthStore } from '../../features/auth/authStore';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
 import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../../constants/colors';
@@ -31,6 +32,7 @@ export default function ProfileScreen() {
 
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
+            <PageHeader title="Profile" />
             <View style={styles.content}>
                 <View style={styles.header}>
                     <View style={styles.avatar}>

@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCartStore } from '../../features/cart/cartStore';
 import { CartItemCard } from '../../components/cart/CartItemCard';
 import { Button } from '../../components/common/Button';
+import { PageHeader } from '../../components/common/PageHeader';
 import { formatCurrency } from '../../utils/format';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
 import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../../constants/colors';
@@ -18,9 +19,7 @@ export default function CartScreen() {
     if (items.length === 0) {
         return (
             <SafeAreaView style={styles.container} edges={['top']}>
-                <View style={styles.header}>
-                    <Text style={styles.headerTitle}>Cart</Text>
-                </View>
+                <PageHeader title="Cart" />
                 <View style={styles.emptyContainer}>
                     <Text style={styles.emptyEmoji}>🛒</Text>
                     <Text style={styles.emptyTitle}>Your cart is empty</Text>
@@ -43,13 +42,7 @@ export default function CartScreen() {
 
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-                    <Ionicons name="arrow-back" size={24} color={Colors.textPrimary} />
-                </TouchableOpacity>
-                <Text style={styles.headerTitle}>Cart</Text>
-                <View style={styles.headerRight} />
-            </View>
+            <PageHeader title="Cart" showBackButton />
             <View style={styles.content}>
                 <FlatList
                     data={items}
@@ -81,27 +74,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background,
-    },
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: Spacing.xl - 6,
-        paddingTop: Spacing.lg,
-        paddingBottom: Spacing.md,
-        backgroundColor: Colors.background,
-    },
-    backButton: {
-        padding: 8,
-        marginLeft: -8,
-    },
-    headerTitle: {
-        fontSize: FontSizes.xxxl,
-        fontWeight: 'bold',
-        color: Colors.textPrimary,
-    },
-    headerRight: {
-        width: 40,
     },
     content: {
         flex: 1,

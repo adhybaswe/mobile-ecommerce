@@ -1,16 +1,24 @@
 import React from 'react';
-import { View, Text, Alert, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Button } from '../../components/common/Button';
+import { Ionicons } from '@expo/vector-icons';
 import { PageHeader } from '../../components/common/PageHeader';
-import { useAuthStore } from '../../features/auth/authStore';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
-import { Colors, FontSizes, Spacing, BorderRadius, Shadows } from '../../constants/colors';
+import { useAuthStore } from '../../features/auth/authStore';
+import { Colors, FontSizes, Spacing, BorderRadius } from '../../constants/colors';
+
+type MenuItem = {
+    id: string;
+    icon: keyof typeof Ionicons.glyphMap;
+    label: string;
+    route?: string;
+    action?: () => void;
+};
 
 export default function ProfileScreen() {
     const router = useRouter();
-    const { logout } = useAuthStore();
+    const { user, logout } = useAuthStore();
 
     const handleLogout = () => {
         Alert.alert(
@@ -30,120 +38,184 @@ export default function ProfileScreen() {
         );
     };
 
+    const menuItems: MenuItem[] = [
+        { id: 'profile', icon: 'person-outline', label: 'Your profile', route: '/profile/edit' },
+        { id: 'address', icon: 'location-outline', label: 'Manage Address', route: '/profile/addresses' },
+        { id: 'payment', icon: 'card-outline', label: 'Payment Methods', route: '/profile/payment' },
+        { id: 'orders', icon: 'receipt-outline', label: 'My Orders', route: '/profile/orders' },
+        { id: 'coupons', icon: 'pricetag-outline', label: 'My Coupons', route: '/profile/coupons' },
+        { id: 'settings', icon: 'settings-outline', label: 'Settings', route: '/profile/settings' },
+        { id: 'help', icon: 'help-circle-outline', label: 'Help Center', route: '/profile/help' },
+        { id: 'privacy', icon: 'lock-closed-outline', label: 'Privacy Policy', route: '/profile/privacy' },
+        { id: 'logout', icon: 'log-out-outline', label: 'Logout', action: handleLogout },
+    ];
+
+    const handleMenuPress = (item: MenuItem) => {
+        if (item.action) {
+            item.action();
+        } else {
+            // For now, just log the action since routes don't exist yet
+            console.log('Navigate to:', item.route);
+            // router.push(item.route);
+        }
+    };
+
+    // Get user initials for avatar
+    const getUserInitials = () => {
+        if (!user?.name) return 'U';
+        const names = user.name.split('_');
+        if (names.length >= 2) {
+            return names[0].charAt(0).toUpperCase() + names[1].charAt(0).toUpperCase();
+        }
+        return user.name.charAt(0).toUpperCase();
+    };
+
+    // Format username for display
+    const getDisplayName = () => {
+        if (!user?.name) return 'User';
+        // Convert username like "mor_2314" to "Mor 2314"
+        return user.name.split('_').map(part =>
+            part.charAt(0).toUpperCase() + part.slice(1)
+        ).join(' ');
+    };
+
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
             <PageHeader title="Profile" />
-            <View style={styles.content}>
-                <View style={styles.header}>
-                    <View style={styles.avatar}>
-                        <Text style={styles.avatarText}>U</Text>
+            <ScrollView
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+            >
+                {/* Profile Header */}
+                <View style={styles.profileHeader}>
+                    <View style={styles.avatarContainer}>
+                        <View style={styles.avatar}>
+                            <Text style={styles.avatarText}>{getUserInitials()}</Text>
+                        </View>
+                        <View style={styles.editBadge}>
+                            <Ionicons name="create-outline" size={16} color={Colors.textWhite} />
+                        </View>
                     </View>
-                    <Text style={styles.name}>Demo User</Text>
-                    <Text style={styles.email}>demo@example.com</Text>
+                    <Text style={styles.userName}>{getDisplayName()}</Text>
                 </View>
 
-                <View style={styles.section}>
-                    <Text style={styles.sectionTitle}>
-                        Account Information
-                    </Text>
-                    <View style={styles.infoRow}>
-                        <Text style={styles.label}>Username</Text>
-                        <Text style={styles.value}>mor_2314</Text>
-                    </View>
-                    <View style={styles.separator} />
-                    <View style={styles.infoRow}>
-                        <Text style={styles.label}>Member Since</Text>
-                        <Text style={styles.value}>January 2026</Text>
-                    </View>
+                {/* Menu Items */}
+                <View style={styles.menuContainer}>
+                    {menuItems.map((item, index) => (
+                        <TouchableOpacity
+                            key={item.id}
+                            style={[
+                                styles.menuItem,
+                                index === menuItems.length - 1 && styles.menuItemLast
+                            ]}
+                            onPress={() => handleMenuPress(item)}
+                            activeOpacity={0.7}
+                        >
+                            <View style={styles.menuItemLeft}>
+                                <Ionicons
+                                    name={item.icon}
+                                    size={24}
+                                    color={item.id === 'logout' ? Colors.error : Colors.textSecondary}
+                                />
+                                <Text style={[
+                                    styles.menuItemText,
+                                    item.id === 'logout' && styles.logoutText
+                                ]}>{item.label}</Text>
+                            </View>
+                            <Ionicons
+                                name="chevron-forward"
+                                size={20}
+                                color={Colors.textSecondary}
+                            />
+                        </TouchableOpacity>
+                    ))}
                 </View>
-
-                <View style={styles.footer}>
-                    <Button
-                        title="Logout"
-                        onPress={handleLogout}
-                        variant="outline"
-                        size="lg"
-                    />
-                </View>
-            </View>
+            </ScrollView>
             <CustomBottomNav />
         </SafeAreaView>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.background,
     },
-    content: {
+    scrollView: {
         flex: 1,
+    },
+    scrollContent: {
         paddingHorizontal: Spacing.xl,
         paddingTop: Spacing.xxl,
         paddingBottom: 100,
     },
-    header: {
+    profileHeader: {
         alignItems: 'center',
         marginBottom: Spacing.xxl,
     },
-    avatar: {
-        width: 96,
-        height: 96,
-        backgroundColor: Colors.primary,
-        borderRadius: 48,
-        alignItems: 'center',
-        justifyContent: 'center',
+    avatarContainer: {
+        position: 'relative',
         marginBottom: Spacing.lg,
     },
+    avatar: {
+        width: 120,
+        height: 120,
+        backgroundColor: Colors.textSecondary,
+        borderRadius: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     avatarText: {
-        fontSize: 36,
+        fontSize: 40,
         color: Colors.textWhite,
         fontWeight: 'bold',
     },
-    name: {
+    editBadge: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        width: 36,
+        height: 36,
+        backgroundColor: Colors.textPrimary,
+        borderRadius: 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 3,
+        borderColor: Colors.background,
+    },
+    userName: {
         fontSize: FontSizes.xxxl,
         fontWeight: 'bold',
         color: Colors.textPrimary,
-        marginBottom: Spacing.xs,
     },
-    email: {
-        fontSize: FontSizes.lg,
-        color: Colors.textSecondary,
-    },
-    section: {
+    menuContainer: {
         backgroundColor: Colors.background,
-        borderRadius: BorderRadius.md,
-        padding: Spacing.lg,
-        marginBottom: Spacing.lg,
-        ...Shadows.small,
     },
-    sectionTitle: {
-        fontSize: FontSizes.xl,
-        fontWeight: '600',
-        color: Colors.textPrimary,
-        marginBottom: Spacing.md,
-    },
-    infoRow: {
+    menuItem: {
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
-        paddingVertical: Spacing.sm,
+        paddingVertical: Spacing.lg,
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.divider,
     },
-    label: {
-        fontSize: FontSizes.lg,
-        color: Colors.textSecondary,
+    menuItemLast: {
+        borderBottomWidth: 0,
     },
-    value: {
+    menuItemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.md,
+    },
+    menuItemText: {
         fontSize: FontSizes.lg,
-        fontWeight: '500',
         color: Colors.textPrimary,
+        fontWeight: '500',
     },
-    separator: {
-        height: 1,
-        backgroundColor: Colors.divider,
-        marginVertical: Spacing.xs,
-    },
-    footer: {
-        marginTop: 'auto',
-        marginBottom: Spacing.xxl,
+    logoutText: {
+        color: Colors.error,
     },
 });
+

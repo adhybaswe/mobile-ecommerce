@@ -24,7 +24,7 @@ export default function LoginScreen() {
 
         try {
             const response = await loginMutation.mutateAsync({ username, password });
-            await login(response.token);
+            await login(response.token, username);
             router.replace('/(tabs)');
         } catch (error) {
             Alert.alert('Login Failed', 'Invalid credentials. Try: mor_2314 / 83r5^_');

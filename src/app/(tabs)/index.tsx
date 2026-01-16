@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, FlatList, RefreshControl, StyleSheet, useWindowDimensions, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { useProducts } from '../../hooks/useApi';
 import { ProductCard } from '../../components/product/ProductCard';
 import { Loading } from '../../components/common/Loading';
@@ -12,10 +13,15 @@ import { CategorySection } from '../../components/home/CategorySection';
 import { CustomBottomNav } from '../../components/navigation/CustomBottomNav';
 
 export default function HomeScreen() {
+    const router = useRouter();
     const { data: products, isLoading, error, refetch, isRefetching } = useProducts();
     const { width } = useWindowDimensions();
 
     const cardWidth = (width - 32 - 16) / 2;
+
+    const handleNotificationPress = () => {
+        router.push('/(tabs)/notifications');
+    };
 
     if (isLoading) {
         return <Loading />;
@@ -43,7 +49,7 @@ export default function HomeScreen() {
 
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
-            <LocationHeader />
+            <LocationHeader onNotificationPress={handleNotificationPress} />
             <FlatList
                 data={products}
                 numColumns={2}

@@ -32,7 +32,7 @@ export const CustomBottomNav: React.FC = () => {
     };
 
     const navItems = [
-        { path: '/(tabs)', icon: 'home', activeIcon: 'home', requiresAuth: false },
+        { path: '/(tabs)', icon: 'home-outline', activeIcon: 'home', requiresAuth: false },
         { path: '/(tabs)/cart', icon: 'bag-outline', activeIcon: 'bag', requiresAuth: true, showBadge: true },
         { path: '/(tabs)/favorites', icon: 'heart-outline', activeIcon: 'heart', requiresAuth: true },
         { path: '/(tabs)/messages', icon: 'chatbubble-outline', activeIcon: 'chatbubble', requiresAuth: false },

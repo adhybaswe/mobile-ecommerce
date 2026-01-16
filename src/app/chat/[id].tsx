@@ -22,7 +22,7 @@ const MOCK_MESSAGES: Message[] = [
         text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         timestamp: '08:04 PM',
         senderId: '1',
-        senderName: 'Sheila Lemke',
+        senderName: 'Rachel Kim',
         senderAvatar: '👩🏼',
     },
     {
@@ -30,7 +30,7 @@ const MOCK_MESSAGES: Message[] = [
         text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         timestamp: '08:04 PM',
         senderId: '2',
-        senderName: 'Esther Howard',
+        senderName: 'You',
         senderAvatar: '👩🏽',
     },
     {
@@ -38,7 +38,7 @@ const MOCK_MESSAGES: Message[] = [
         imageUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400',
         timestamp: '08:04 PM',
         senderId: '1',
-        senderName: 'Sheila Lemke',
+        senderName: 'Rachel Kim',
         senderAvatar: '👩🏼',
     },
     {
@@ -46,7 +46,7 @@ const MOCK_MESSAGES: Message[] = [
         voiceDuration: '0:13',
         timestamp: '08:04 PM',
         senderId: '2',
-        senderName: 'Esther Howard',
+        senderName: 'You',
         senderAvatar: '👩🏽',
     },
 ];
@@ -59,7 +59,7 @@ export default function ChatDetailScreen() {
 
     // Mock user data - in real app, fetch based on params.id
     const chatUser = {
-        name: 'Sheila Lemke',
+        name: 'Rachel Kim',
         avatar: '👩🏼',
         status: 'Online',
     };
@@ -162,7 +162,7 @@ export default function ChatDetailScreen() {
                 text: messageText,
                 timestamp: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
                 senderId: currentUserId,
-                senderName: 'Esther Howard',
+                senderName: 'You',
                 senderAvatar: '👩🏽',
             };
             setMessages([...messages, newMessage]);
